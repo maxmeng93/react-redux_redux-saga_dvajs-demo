@@ -1,24 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+
+import DvajsPage from './pages/DvajsPage/';
+import ReactReduxPage from './pages/ReactReduxPage/';
+import ReduxPage from './pages/ReduxPage/';
+import ReduxSagaPage from './pages/ReduxSagaPage/';
+import BasicPage from './pages/BasicPage/';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/redux">redux demo</Link></li>
+          <li><Link to="/react-redux">react-redux demo</Link></li>
+          <li><Link to="/redux-saga">redux-saga demo</Link></li>
+          <li><Link to="/dvajs">dvajs demo</Link></li>
+        </ul>
+        
+        <Switch>
+          <Route path="/redux" component={ReduxPage}></Route>
+          <Route path="/react-redux" component={ReactReduxPage}></Route>
+          <Route path="/redux-saga" component={ReduxSagaPage}></Route>
+          <Route path="/dvajs" component={DvajsPage}></Route>
+          <Route path="/" component={BasicPage}></Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
