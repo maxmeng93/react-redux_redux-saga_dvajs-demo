@@ -59,7 +59,7 @@ export default class BasicPage extends Component {
         header={this.HeaderInput()}
         bordered
         dataSource={this.state.list}
-        renderItem={(item, index) => (
+        renderItem={item => (
           <List.Item 
             key={item.uid}
             extra={<Button onClick={() => this.deleteTask(item.uid)}>删除</Button>}
