@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import DvajsPage from './pages/DvajsPage/';
 import ReactReduxPage from './pages/ReactReduxPage/';
@@ -19,13 +19,11 @@ function App() {
           <li><Link to="/dvajs">dvajs demo</Link></li>
         </ul>
         
-        <Switch>
-          <Route path="/redux" component={ReduxPage}></Route>
-          <Route path="/react-redux" component={ReactReduxPage}></Route>
-          <Route path="/redux-saga" component={ReduxSagaPage}></Route>
-          <Route path="/dvajs" component={DvajsPage}></Route>
-          <Route path="/" component={BasicPage}></Route>
-        </Switch>
+        <Route path="/redux" component={ReduxPage}></Route>
+        <Route path="/react-redux" component={ReactReduxPage}></Route>
+        <Route path="/redux-saga" component={ReduxSagaPage}></Route>
+        <Route path="/dvajs" component={DvajsPage}></Route>
+        <Route path="/" exact component={BasicPage}></Route>
       </Router>
     </div>
   );

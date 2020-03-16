@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { List, Input, Button } from 'antd';
+import axios from 'axios';
 
 export default class BasicPage extends Component {
   state = {
@@ -8,24 +9,22 @@ export default class BasicPage extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      list: JSON.parse(localStorage.getItem('todoList')) || [],
+    axios.get('/todolist').then(res => {
+      this.setState({
+        list: res.data,
+      });
     });
   }
 
   clickAddBtn = () => {
-    const { inputValue, list } = this.state;
+    const { inputValue } = this.state;
     if (!inputValue) return;
-    
-    const newList = [
-      { uid: new Date().getTime(), value: inputValue }, 
-      ...list,
-    ];
-    localStorage.setItem('todoList', JSON.stringify(newList));
 
-    this.setState({
-      inputValue: '',
-      list: newList,
+    axios.post('/todolist/add', inputValue).then(res => {
+      this.setState({
+        inputValue: '',
+        list: res.data,
+      });
     });
   }
 
@@ -47,13 +46,10 @@ export default class BasicPage extends Component {
   )
 
   deleteTask = uid => {
-    const { list } = this.state;
-    const newList = list.filter(item => item.uid !== uid);
-    
-    localStorage.setItem('todoList', JSON.stringify(newList));
-
-    this.setState({
-      list: newList,
+    axios.delete('/todolist/remove', { data: uid }).then(res => {
+      this.setState({
+        list: res.data,
+      });
     });
   }
 
