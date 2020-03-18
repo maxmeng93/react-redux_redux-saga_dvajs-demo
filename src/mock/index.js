@@ -7,8 +7,8 @@ Mock.mock('/todolist', 'get', () => {
 Mock.mock('/todolist/add', 'post', request => {
   const list = JSON.parse(localStorage.getItem('todoList')) || [];
   const addItem = { 
-    uid: new Date().getTime(), 
-    value: request.body,
+    task: request.body,
+    completed: false, 
   }
   const newList = [addItem, ...list];
 
@@ -17,9 +17,8 @@ Mock.mock('/todolist/add', 'post', request => {
 });
 
 Mock.mock('/todolist/remove', 'delete', request => {
-  console.log(request);
   const list = JSON.parse(localStorage.getItem('todoList')) || [];
-  const newList = list.filter(e => e.uid !== request.body);
+  const newList = list.filter((e, i) => i !== request.body);
   localStorage.setItem('todoList', JSON.stringify(newList));
 
   return newList;

@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <Router>
         <ul>
-          <li><Link to="/">Home</Link></li>
+          <li><Link to="/">Basic</Link></li>
           <li><Link to="/redux">redux demo</Link></li>
           <li><Link to="/react-redux">react-redux demo</Link></li>
           <li><Link to="/redux-saga">redux-saga demo</Link></li>
