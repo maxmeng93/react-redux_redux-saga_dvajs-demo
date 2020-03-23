@@ -11,7 +11,9 @@
   * 新增 TODO 时，调用 `store.dispatch(action)`，`reducer` 接收到后，根据 `action` 中的 `type`，处理数据，并将新的 `state` 返回 `store` 。
   * 这个实现不包含异步请求或副作用。
 * ReactReduxPage：
-
+  * 使用 `React-Redux` 提供的 `Provider` 组件和 `store`，为整个应用提供全局数据。
+  * 通过 `connect` 方法，连接组件和全局数据。
+  * 这个实现不包含异步请求或副作用。
 * ReduxSagaPage：
 
 * DvajsPage：
